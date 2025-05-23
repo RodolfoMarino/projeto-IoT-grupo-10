@@ -1,4 +1,5 @@
 # projeto-IoT-grupo-10
+Monitoramento Inteligente do Consumo de Água Residencial
 
 O projeto utiliza a plataforma ESP32, que se destaca pela conectividade Wi-Fi e
 compatibilidade com o protocolo MQTT, permitindo a transmissão dos dados em tempo
