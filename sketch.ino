@@ -3,7 +3,7 @@
 
 
 // Configuração do MQTT
-const char* mqtt_server = "broker.hivemq.com"; // Você pode usar outro broker MQTT
+const char* mqtt_server = "broker.hivemq.com"; // Pode-se usar outro broker MQTT
 const char* topic = "sensor/nivel_agua";
 
 WiFiClient espClient;
@@ -49,7 +49,7 @@ float medirNivelAgua() {
   digitalWrite(TRIGGER_PIN, LOW);
 
   long duration = pulseIn(ECHO_PIN, HIGH);
-  float distancia = duration * 0.034 / 2; // Conversão para cm
+  float distancia = 400 * 0.034 / 2; // 0.034 cm/μs é a velocidade do som no ar 
 
   return distancia;
 }
@@ -87,8 +87,9 @@ void loop() {
     Serial.print("LOW");
   } else {
     digitalWrite(BUZZER_PIN, HIGH);
+    Serial.print("HIGH");
     delay(500);
-    digitalWrite(BUZZER_PIN, LOW);
+    //digitalWrite(BUZZER_PIN, LOW);
   }
 
   delay(2000); // Mede a cada 2 segundos
