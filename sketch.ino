@@ -1,7 +1,6 @@
 #include <WiFi.h>
 #include <PubSubClient.h>
 
-
 // Configuração do MQTT
 const char* mqtt_server = "broker.hivemq.com"; // Pode-se usar outro broker MQTT
 const char* topic = "sensor/nivel_agua";
@@ -17,12 +16,12 @@ PubSubClient client(espClient);
 // Função para conectar ao Wi-Fi
 void setup_wifi() {
   Serial.print("Conectando ao Wi-Fi...");
-WiFi.begin("Wokwi-GUEST", ""); //(wifi ssid, password)
+  WiFi.begin("Wokwi-GUEST", ""); //(wifi ssid, password)
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
-    Serial.print(WiFi.status());
+    Serial.print(".");
   }
-  Serial.println("Conectado!");
+  Serial.println("\nConectado!");
 }
 
 // Função para conectar ao MQTT
@@ -40,17 +39,20 @@ void reconnect() {
   }
 }
 
-// Função para medir a distância com HC-SR04
-float medirNivelAgua() {
+// Função para medir a distância com HC-SR04 e calcular tempo de leitura
+float medirNivelAgua(unsigned long &tempoLeituraSensor) {
   digitalWrite(TRIGGER_PIN, LOW);
   delayMicroseconds(2);
   digitalWrite(TRIGGER_PIN, HIGH);
   delayMicroseconds(10);
   digitalWrite(TRIGGER_PIN, LOW);
 
+  unsigned long inicio = millis();
   long duration = pulseIn(ECHO_PIN, HIGH);
-  float distancia = 400 * 0.034 / 2; // 0.034 cm/μs é a velocidade do som no ar 
+  unsigned long fim = millis();
+  tempoLeituraSensor = fim - inicio;
 
+  float distancia = duration * 0.034 / 2; // Corrigida a fórmula de medição
   return distancia;
 }
 
@@ -71,10 +73,18 @@ void loop() {
   }
   client.loop();
 
-  float nivelAgua = medirNivelAgua();
+  unsigned long tempoTotalInicio = millis(); // Marca o tempo total do ciclo
+
+  unsigned long tempoLeituraSensor = 0;
+  float nivelAgua = medirNivelAgua(tempoLeituraSensor);
+
   Serial.print("Nível da água: ");
   Serial.print(nivelAgua);
   Serial.println(" cm");
+
+  Serial.print("Tempo de leitura do sensor: ");
+  Serial.print(tempoLeituraSensor);
+  Serial.println(" ms");
 
   // Envia os dados para o MQTT
   char msg[10];
@@ -84,13 +94,20 @@ void loop() {
   // Alerta sonoro se o nível estiver abaixo de 10 cm
   if (nivelAgua > 10) {
     digitalWrite(BUZZER_PIN, LOW);
-    Serial.print("LOW");
+    Serial.println("Buzzer: Desligado");
   } else {
     digitalWrite(BUZZER_PIN, HIGH);
-    Serial.print("HIGH");
+    Serial.println("Buzzer: Ligado");
     delay(500);
-    //digitalWrite(BUZZER_PIN, LOW);
   }
+
+  unsigned long tempoTotalFim = millis();
+  unsigned long tempoTotal = tempoTotalFim - tempoTotalInicio;
+
+  Serial.print("Tempo total até publicação + buzzer: ");
+  Serial.print(tempoTotal);
+  Serial.println(" ms");
+  Serial.println("-----------------------------");
 
   delay(2000); // Mede a cada 2 segundos
 }
