@@ -1,0 +1,30 @@
+sensor/nivel_agua
+{"nivel_agua": 400.0, "tempo_leitura_sensor_ms": 24.0, "tempo_total_ms": 28.0, "alerta": "Buzzer Desligado"}
+{"nivel_agua": 0.09, "tempo_leitura_sensor_ms": 23.0, "tempo_total_ms": 528.0, "alerta": "Buzzer Ligado"}
+sensor/nivel_agua
+
+ / 
+
+29/05/2025 23:06:01 
+29/05/2025 23:04:56(-64.47 seconds) 
+{"nivel_agua": 500.0, "tempo_leitura_sensor_ms": 28.0, "tempo_total_ms": 24.0, "alerta": "Buzzer Desligado"}
+29/05/2025 23:04:47(-9.25 seconds) 
+{"nivel_agua": 400.0, "tempo_leitura_sensor_ms": 24.0, "tempo_total_ms": 28.0, "alerta": "Buzzer Desligado"}
+29/05/2025 23:04:13(-33.73 seconds) 
+{"nivel_agua": 3.0, "tempo_leitura_sensor_ms": 28.0, "tempo_total_ms": 24.0, "alerta": "Buzzer Ligado"}
+29/05/2025 23:04:09(-4.7 seconds) 
+{"nivel_agua": 5.0, "tempo_leitura_sensor_ms": 28.0, "tempo_total_ms": 24.0, "alerta": "Buzzer Ligado"}
+29/05/2025 23:04:02(-6.25 seconds) 
+{"nivel_agua": 400.0, "tempo_leitura_sensor_ms": 24.0, "tempo_total_ms": 528.0, "alerta": "Buzzer Desligado"}
+sensor/nivel_agua
+29/05/2025 23:06:01 
+29/05/2025 23:04:56(-64.47 seconds) 
+{"nivel_agua": 500.0, "tempo_leitura_sensor_ms": 28.0, "tempo_total_ms": 24.0, "alerta": "Buzzer Desligado"}
+29/05/2025 23:04:47(-9.25 seconds) 
+{"nivel_agua": 400.0, "tempo_leitura_sensor_ms": 24.0, "tempo_total_ms": 28.0, "alerta": "Buzzer Desligado"}
+29/05/2025 23:04:13(-33.73 seconds) 
+{"nivel_agua": 3.0, "tempo_leitura_sensor_ms": 28.0, "tempo_total_ms": 24.0, "alerta": "Buzzer Ligado"}
+29/05/2025 23:04:09(-4.7 seconds) 
+{"nivel_agua": 5.0, "tempo_leitura_sensor_ms": 28.0, "tempo_total_ms": 24.0, "alerta": "Buzzer Ligado"}
+29/05/2025 23:04:02(-6.25 seconds) 
+{"nivel_agua": 400.0, "tempo_leitura_sensor_ms": 24.0, "tempo_total_ms": 528.0, "alerta": "Buzzer Desligado"}
